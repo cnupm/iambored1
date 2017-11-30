@@ -174,10 +174,7 @@ function formatResults(mxs, serverReply, item){
 
   trySendMessage(item).then(res => {
     let result = serverReply;
-    result.rcpt_to_respose = res.rcpt_to_response;
-    result.address_exists = res.address_exists;
-    result.mail_from_resposne = res.mail_from_response;
-    result.wrong_address_accepted = res.wrong_address_accepted;
+    for(var f in res) {result[f] = res[f];}
     result.address = validEmailStr(email);
     result.mx_exists = mxs.length > 0;
     result.mx_domains = mxs;
@@ -210,8 +207,7 @@ if(typeof args.proxy !== 'undefined'){
   if(args.proxy.lastIndexOf("/") != -1){ proxy_host = args.proxy.substring(args.proxy.lastIndexOf("/") + 1); }
   if(proxy_host.lastIndexOf(":") != -1){
     let arr = proxy_host.split(":");
-    proxy_host = arr[0];
-    proxy_port = arr[1];
+    [proxy_host, proxy_port] = [arr[0], arr[1]];
   }
 }
 
