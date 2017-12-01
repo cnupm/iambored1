@@ -207,7 +207,7 @@ if(typeof args.proxy !== 'undefined'){
   if(args.proxy.lastIndexOf("/") != -1){ proxy_host = args.proxy.substring(args.proxy.lastIndexOf("/") + 1); }
   if(proxy_host.lastIndexOf(":") != -1){
     let arr = proxy_host.split(":");
-    [proxy_host, proxy_port] = [arr[0], arr[1]];
+    [proxy_host, proxy_port, ] = arr;
   }
 }
 
